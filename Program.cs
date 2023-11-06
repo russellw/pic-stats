@@ -1,2 +1,12 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿foreach (var file in Directory.EnumerateFiles("."))
+{
+    var name = Path.GetFileName(file);
+    try
+    {
+        using var image = Image.Load(name);
+        Console.WriteLine("{0}\t{1}\t{2}", image.Width, image.Height, name);
+    }
+    catch (UnknownImageFormatException)
+    {
+    }
+}
